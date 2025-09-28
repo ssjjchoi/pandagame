@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후이바오 판다 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>🐼 후이바오 판다 게임 🐼</h1>
+            <div class="score-board">
+                <div class="score">점수: <span id="score">0</span></div>
+                <div class="lives">생명: <span id="lives">3</span></div>
+                <div class="level">레벨: <span id="level">1</span></div>
+            </div>
+        </header>
+        
+        <div class="game-area">
+            <div class="panda" id="panda">
+                <div class="panda-face">
+                    <div class="panda-ear left"></div>
+                    <div class="panda-ear right"></div>
+                    <div class="panda-eye left"></div>
+                    <div class="panda-eye right"></div>
+                    <div class="panda-nose"></div>
+                    <div class="panda-mouth"></div>
+                    <div class="panda-cheek left"></div>
+                    <div class="panda-cheek right"></div>
+                </div>
+            </div>
+            
+            <div class="food" id="food">🎋</div>
+            <div class="obstacle" id="obstacle">⚠️</div>
+        </div>
+        
+        <div class="controls">
+            <button id="startBtn">게임 시작</button>
+            <button id="pauseBtn">일시정지</button>
+            <button id="resetBtn">다시 시작</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>게임 방법</h3>
+            <p>🐼 후이바오가 대나무(🎋)를 먹어서 점수를 획득하세요!</p>
+            <p>⚠️ 장애물을 피하세요!</p>
+            <p>방향키 또는 WASD로 움직이세요!</p>
+        </div>
+        
+        <div class="game-over" id="gameOver" style="display: none;">
+            <h2>게임 오버!</h2>
+            <p>최종 점수: <span id="finalScore">0</span></p>
+            <button id="restartBtn">다시 시작</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

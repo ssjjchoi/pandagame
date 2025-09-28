@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* 화면 스크롤 방지 */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+}
+
+header h1 {
+    color: #2E8B57;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background: #F0F8FF;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #2E8B57;
+}
+
+.score, .lives, .level {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2E8B57;
+}
+
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 100%);
+    border: 3px solid #2E8B57;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.panda {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.15s ease;
+    z-index: 10;
+    animation: pandaBounce 2s ease-in-out infinite;
+}
+
+@keyframes pandaBounce {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.05); }
+}
+
+.panda-face {
+    width: 100%;
+    height: 100%;
+    background: #FFF8DC;
+    border-radius: 50%;
+    position: relative;
+    border: 4px solid #2C2C2C;
+    box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.panda-ear {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: #2C2C2C;
+    border-radius: 50%;
+    top: -15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.panda-ear.left {
+    left: 8px;
+    transform: rotate(-15deg);
+}
+
+.panda-ear.right {
+    right: 8px;
+    transform: rotate(15deg);
+}
+
+.panda-ear::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #FFB6C1;
+    border-radius: 50%;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.panda-eye {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #2C2C2C;
+    border-radius: 50%;
+    top: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.panda-eye.left {
+    left: 18px;
+}
+
+.panda-eye.right {
+    right: 18px;
+}
+
+.panda-eye::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    animation: eyeShine 3s ease-in-out infinite;
+}
+
+@keyframes eyeShine {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.panda-nose {
+    position: absolute;
+    width: 12px;
+    height: 10px;
+    background: #2C2C2C;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: 42px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.panda-mouth {
+    position: absolute;
+    width: 25px;
+    height: 12px;
+    border: 3px solid #2C2C2C;
+    border-top: none;
+    border-radius: 0 0 25px 25px;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.panda-cheek {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background: #FFB6C1;
+    border-radius: 50%;
+    top: 45px;
+    opacity: 0.6;
+}
+
+.panda-cheek.left {
+    left: 5px;
+}
+
+.panda-cheek.right {
+    right: 5px;
+}
+
+.food {
+    position: absolute;
+    font-size: 35px;
+    animation: float 2s ease-in-out infinite;
+    z-index: 5;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.2s ease;
+}
+
+.food:hover {
+    transform: scale(1.2);
+}
+
+.obstacle {
+    position: absolute;
+    font-size: 30px;
+    animation: moveLeft 3s linear infinite;
+    z-index: 5;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes moveLeft {
+    0% { right: -50px; }
+    100% { left: -50px; }
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.controls button {
+    background: #2E8B57;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 10px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.controls button:hover {
+    background: #228B22;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.controls button:active {
+    transform: translateY(0);
+}
+
+.instructions {
+    background: #F0F8FF;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #2E8B57;
+    margin-bottom: 20px;
+}
+
+.instructions h3 {
+    color: #2E8B57;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.instructions p {
+    color: #333;
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid #FF6B6B;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.game-over h2 {
+    color: #FF6B6B;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.game-over p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#restartBtn {
+    background: #FF6B6B;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#restartBtn:hover {
+    background: #FF5252;
+    transform: translateY(-2px);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .game-container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .game-area {
+        height: 300px;
+    }
+    
+    .panda {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .food, .obstacle {
+        font-size: 20px;
+    }
+    
+    .controls button {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 1em;
+    }
+}
