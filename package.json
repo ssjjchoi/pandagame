@@ -1,0 +1,25 @@
+{
+  "name": "pandagame",
+  "version": "1.0.0",
+  "description": "한국 에버랜드의 판다 후이바오/루이바오를 주인공으로 한 HTML/CSS/JavaScript 게임입니다. 이 게임은 팬 게임이며, 공식 에버랜드와 관련이 없습니다. This game is a fan-made game and is not affiliated with Everland.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssjjchoi/pandagame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssjjchoi/pandagame/issues"
+  },
+  "homepage": "https://github.com/ssjjchoi/pandagame#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0"
+  }
+}
